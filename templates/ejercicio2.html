@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Ejercicio 2{% endblock %}
+
+{% block content %}
+<div class="tarjeta tarjeta-centrada">
+    <form method="POST" action="{{ url_for('ejercicio2') }}">
+        <div class="campo">
+            <label for="nombre1">Nombre 1:</label>
+            <input type="text" id="nombre1" name="nombre1" required value="{{ request.form.get('nombre1', '') }}">
+        </div>
+
+        <div class="campo">
+            <label for="nombre2">Nombre 2:</label>
+            <input type="text" id="nombre2" name="nombre2" required value="{{ request.form.get('nombre2', '') }}">
+        </div>
+
+        <div class="campo">
+            <label for="nombre3">Nombre 3:</label>
+            <input type="text" id="nombre3" name="nombre3" required value="{{ request.form.get('nombre3', '') }}">
+        </div>
+
+        <button type="submit" class="btn-enviar">Enviar</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if nombre_mayor and cantidad_caracteres is not none %}
+        <div class="resultado resultado-centrado">
+            <p>El nombre con mayor cantidad de caracteres es : {{ nombre_mayor }}</p>
+            <p>El nombre tiene : {{ cantidad_caracteres }} caracteres</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
